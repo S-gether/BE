@@ -1,4 +1,4 @@
-const Parameters = [{
+const parameters = [{
     in : "path",
     name: "groupId",
     required: "true",
