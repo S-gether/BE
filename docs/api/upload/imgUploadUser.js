@@ -1,3 +1,13 @@
+const parameters = [{
+  in : "path",
+  name: "userId",
+  required: "true",
+  schema: {
+      type: "string"
+  }
+}
+];
+
 module.exports = {
   "/upload/user/": {
     post: {
@@ -61,8 +71,12 @@ module.exports = {
         },
       },
     },
+  },
+
+  "/upload/user/{userId}": {
     get: {
         tags: ["Upload"],
+        parameters,
         summary: "유저 프로필 사진 불러오기",
         description: "유저 프로필 사진을 받아옵니다.",
         responses: {

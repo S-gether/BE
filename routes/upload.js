@@ -77,10 +77,10 @@ router.post('/user', verifyToken, upload.single('upload'), async (req, res) => {
 	}
 });
 
-router.get('/user', verifyToken, async (req, res) => {
-    const token = req.decoded
+router.get('/user/:userId', verifyToken, async (req, res) => {
+    const userId = req.params.userId
 	try {
-        const [userImgSelectResult, field] = await conn.execute('SELECT img_path FROM img_user WHERE user_id = ?', [token.id]); 
+        const [userImgSelectResult, field] = await conn.execute('SELECT img_path FROM img_user WHERE user_id = ?', [userId]); 
 		if (!userImgSelectResult) {
             throw new Error();
         }
