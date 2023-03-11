@@ -41,7 +41,7 @@ router.post('/', verifyToken, async (req, res) => {
         
         const roomCreateInfo = [roomId, token.id, body.room_name, body.accommodation, roomPwd, body.explain ,pwdFlag, nowTime, nowTime];
 		console.log(roomCreateInfo);
-        //await conn.execute('INSERT INTO `group` VALUES (?,?,?,?,?,?,?,?,?)', roomCreateInfo);
+        await conn.execute('INSERT INTO `group` VALUES (?,?,?,?,?,?,?,?,?)', roomCreateInfo);
 		
 		return res.status(201).json({
 			message : "스터디 그룹이 성공적으로 생성됐습니다.",
@@ -85,10 +85,9 @@ router.get('/user/:roomId', verifyToken, async (req, res) => {
 			user.studyTime = studyTime[0][0].total_time;
 			usersInfo.push(user);
 		}
-		console.log(usersInfo);
 		return res.status(200).json({
 			message : `그룹에 속한 모든 유저 아이디 목록을 보냅니다`,
-            usersSelectReseult
+            usersInfo
 		});
 	} catch (err) {
 		console.log(err);
