@@ -40,8 +40,8 @@ router.post('/', verifyToken, async (req, res) => {
         }
         
         const roomCreateInfo = [roomId, token.id, body.room_name, body.accommodation, roomPwd, body.explain ,pwdFlag, nowTime, nowTime];
-
-        await conn.execute('INSERT INTO `group` VALUES (?,?,?,?,?,?,?,?)', roomCreateInfo);
+		console.log(roomCreateInfo);
+        //await conn.execute('INSERT INTO `group` VALUES (?,?,?,?,?,?,?,?,?)', roomCreateInfo);
 		
 		return res.status(201).json({
 			message : "스터디 그룹이 성공적으로 생성됐습니다.",
