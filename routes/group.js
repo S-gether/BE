@@ -84,9 +84,11 @@ router.get('/user/:roomId', verifyToken, async (req, res) => {
 			const studyTime = await conn.execute('SELECT total_time FROM study_time WHERE user_id = ?', [user.user_id]);
 			const userInfo = await conn.execute('SELECT * FROM user_info WHERE user_id = ?', [user.user_id])
 			user.studyTime = studyTime[0][0].total_time;
-			user.user_info = userInfo
+			user.email = userInfo[0][0].email;
+			user.introduce = userInfo[0][0].introduce;
 			usersInfo.push(user);
 		}
+		console.log(usersInfo);
 		return res.status(200).json({
 			message : `그룹에 속한 모든 유저 아이디 목록을 보냅니다`,
             usersInfo
