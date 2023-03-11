@@ -82,7 +82,9 @@ router.get('/user/:roomId', verifyToken, async (req, res) => {
 		const usersInfo = [];
 		for await (user of usersSelectReseult) {
 			const studyTime = await conn.execute('SELECT total_time FROM study_time WHERE user_id = ?', [user.user_id]);
+			const userInfo = await conn.execute('SELECT * FROM user_info WHERE user_id = ?', [user.user_id])
 			user.studyTime = studyTime[0][0].total_time;
+			user.user_info = userInfo
 			usersInfo.push(user);
 		}
 		return res.status(200).json({
