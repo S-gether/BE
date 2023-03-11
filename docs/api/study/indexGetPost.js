@@ -24,7 +24,12 @@ const parameters = [{
                       type: "int",
                       description: "study time",
                       example: 1204519824,
-                    }
+                    },
+                    aiCount: {
+                      type: "int",
+                      description: "aiCount",
+                      example: 2,
+                    },
                   },
                 },
               },

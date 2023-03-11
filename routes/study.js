@@ -49,8 +49,10 @@ router.post('/:groupId', verifyToken, async (req, res) => {
     const body = req.body;
 	try {
         const updateStudyTime = body.time;
-        const updateInfos = [null, token.id, nowDate, updateStudyTime, nowTime, nowTime, groupId]
-        await conn.execute('INSERT INTO `study_time` VALUES (?,?,?,?,?,?,?)', updateInfos);
+        const aiCount =body.aiCount;
+        const updateInfos = [null, token.id, nowDate, updateStudyTime, nowTime, nowTime, groupId,aiCount]
+        
+        await conn.execute('INSERT INTO `study_time` VALUES (?,?,?,?,?,?,?,?)', updateInfos);
         
 		return res.status(201).json({
 			message : "해당 유저의 그룹의 공부 시간을 추가했습니다.",
