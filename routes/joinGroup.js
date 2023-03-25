@@ -20,7 +20,7 @@ router.post('/:groupId', verifyToken, async (req, res) => {
     const token = req.decoded;
     const nowTime = moment().format("YYYY-M-D H:m:s");
 	try {
-		const [groupsSelectReseult, fieldUser] = await conn.execute('SELECT * FROM `join_group` WHERE user_id = ?', [token.id]);
+		const [groupsSelectReseult, fieldUser] = await conn.execute('SELECT * FROM `join_group` WHERE user_id = ? and group_id = ?', [token.id, groupId]);
 		if (groupsSelectReseult.length !== 0) {
 			return res.status(406).json(
 				{
