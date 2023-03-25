@@ -81,7 +81,7 @@ router.get('/user/:roomId', verifyToken, async (req, res) => {
 		const [usersSelectReseult, fieldUser] = await conn.execute('SELECT join_group.user_id, user_auth.name FROM join_group LEFT JOIN user_auth ON join_group.user_id = user_auth.id WHERE join_group.group_id = ?', [roomId]);
 		const usersInfo = [];
 		for await (user of usersSelectReseult) {
-			const studyTime = await conn.execute('SELECT * FROM study_time WHERE user_id = ?', [user.user_id]);
+			const studyTime = await conn.execute('SELECT study_date FROM study_time WHERE user_id = ?', [user.user_id]);
 			const userInfo = await conn.execute('SELECT * FROM user_info WHERE user_id = ?', [user.user_id])
 			user.studyTime = studyTime[0][0].total_time;
 			user.email = userInfo[0][0].email;
