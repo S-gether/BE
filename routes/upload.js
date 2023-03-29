@@ -84,9 +84,8 @@ router.get('/user/:userId', verifyToken, async (req, res) => {
 		if (!userImgSelectResult) {
             throw new Error();
         }
-		const recentImgIdx = userImgSelectResult.length
-		console.log(userImgSelectResult[recentImgIdx]);
-        return res.sendFile(path.join(__dirname, '../public/images', userImgSelectResult[0].img_path));
+		const recentImgIdx = userImgSelectResult.length - 1; 
+        return res.sendFile(path.join(__dirname, '../public/images', userImgSelectResult[recentImgIdx].img_path));
 	} catch (err) {
         console.log(err);
 		return res.status(406).json(
