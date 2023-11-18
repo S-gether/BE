@@ -67,6 +67,8 @@ router.post("/:groupId", verifyToken, async (req, res) => {
       groupId,
     ];
 
+    console.log(updateInfos);
+
     await conn.execute(
       "INSERT INTO `study_time` VALUES (?,?,?,?,?,?,?,?)",
       updateInfos
