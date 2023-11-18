@@ -120,8 +120,12 @@ router.get("/group/:groupId", verifyToken, async (req, res) => {
     if (!groupImgSelectResult) {
       throw new Error();
     }
+    if (groupImgSelectResult.length === 0) {
+      return res.status(400).json({
+        result: "not found",
+      });
+    }
 
-    console.log(groupImgSelectResult);
     return res.sendFile(
       path.join(__dirname, "../public/images", groupImgSelectResult.img_path)
     );
