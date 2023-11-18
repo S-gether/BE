@@ -14,6 +14,7 @@ router.get("/", verifyToken, async (req, res) => {
       "SELECT * FROM `study_time` WHERE user_id = ?",
       [token.id]
     );
+    console.log(userSelectReseult);
     return res.status(200).json({
       message: "해당 유저의 스터디 시간 정보입니다.",
       userSelectReseult,
