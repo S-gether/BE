@@ -121,9 +121,9 @@ router.get("/group/:groupId", verifyToken, async (req, res) => {
       throw new Error();
     }
 
-    console.log(groupImgSelectResult[0]);
+    console.log(groupImgSelectResult);
     return res.sendFile(
-      path.join(__dirname, "../public/images", groupImgSelectResult[0].img_path)
+      path.join(__dirname, "../public/images", groupImgSelectResult.img_path)
     );
   } catch (err) {
     console.log(err);
